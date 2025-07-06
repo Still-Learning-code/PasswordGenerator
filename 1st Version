@@ -1,0 +1,14 @@
+import java.security.SecureRandom
+
+fun generateSecurePassword(length: Int): String {
+    val charset = ('A'..'Z') + ('a'..'z') + ('0'..'9') + listOf('!', '@', '#', '$', '%', '^', '&', '*', '(', ')')
+    val secureRandom = SecureRandom()
+    return (1..length)
+        .map { charset[secureRandom.nextInt(charset.size)] }
+        .joinToString("")
+}
+
+fun main() {
+    val securePassword = generateSecurePassword(9)
+    println(securePassword)
+}
