@@ -1,0 +1,17 @@
+import java.security.SecureRandom
+
+fun generateCustomPassword(length: Int, requireUppercase: Boolean, requireDigits: Boolean): String {
+    val charset = ('a'..'z') +
+            if (requireUppercase) ('A'..'Z') else emptyList() +
+                    if (requireDigits) ('0'..'9') else emptyList()
+
+    val secureRandom = SecureRandom()
+    return (1..length)
+        .map { charset[secureRandom.nextInt(charset.size)] }
+        .joinToString("")
+}
+
+fun main() {
+    val customPassword = generateCustomPassword(8, requireUppercase = true, requireDigits = true)
+    println(customPassword)
+}
